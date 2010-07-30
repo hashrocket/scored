@@ -16,22 +16,23 @@
 @synthesize viewController;
 
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
 
     navigationController = [[UINavigationController alloc] init];
-	
+
+    CGRect  rect = [[UIScreen mainScreen] bounds];
+    [window setFrame:rect];
+
     if ( IS_IPAD ) {
-        [window setFrame:CGRectMake(0, 0, 768, 1024)];
         viewController = [[PickerViewController alloc] initWithNibName:@"Picker-iPad" bundle:nil];
     } else {
-        [window setFrame:CGRectMake(0, 0, 320, 480)];
-        viewController = [[PickerViewController alloc] initWithNibName:@"Picker" bundle:nil];        
+        viewController = [[PickerViewController alloc] initWithNibName:@"Picker" bundle:nil];
     }
 	[window addSubview:navigationController.view];
 	[navigationController setNavigationBarHidden:YES animated:NO];
 	[navigationController pushViewController:viewController animated:NO];
 	[viewController release];
-	
+
     // Override point for customization after application launch
     [window makeKeyAndVisible];
 }
