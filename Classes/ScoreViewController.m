@@ -12,17 +12,22 @@
 @implementation ScoreViewController
 
 @synthesize selectedScore;
+@synthesize appeared;
 
 - (void)viewDidLoad {
 	[score setTitle:[self selectedScore] forState:UIControlStateNormal];
     [super viewDidLoad];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    self.appeared = animated;
+}
+
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
-    if ( event.subtype == UIEventSubtypeMotionShake )
+    if ( event.subtype == UIEventSubtypeMotionShake && self.appeared )
     {
-		[self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];            
     }
 	
     if ( [super respondsToSelector:@selector(motionEnded:withEvent:)] )

@@ -13,9 +13,11 @@
 
 	NSString *selectedScore;
 	IBOutlet UIButton *score;
+    BOOL appeared;
 	
 }
 
 @property (nonatomic, retain) NSString *selectedScore;
+@property BOOL appeared;
 
 @end

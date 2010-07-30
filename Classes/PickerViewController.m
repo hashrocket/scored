@@ -14,12 +14,16 @@
 @synthesize scoreView;
 
 - (void)scorePicked:(id)sender {
-	scoreView = [[ScoreViewController alloc] initWithNibName:@"Score" bundle:nil];
+
+    if ( IS_IPAD )
+        scoreView = [[ScoreViewController alloc] initWithNibName:@"Score-iPad" bundle:nil];
+    else
+        scoreView = [[ScoreViewController alloc] initWithNibName:@"Score" bundle:nil];
+
 	scoreView.selectedScore = [(UIButton *)sender currentTitle];
 	[self.navigationController pushViewController:scoreView animated:YES];
 	[scoreView becomeFirstResponder];
 	[scoreView release];
-	
 }
 
 @end
